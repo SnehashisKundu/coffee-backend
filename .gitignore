@@ -50,10 +50,10 @@ web_modules/
 
 # Optional npm cache directory
 .npm
-
+node_modules
 # Optional eslint cache
 .eslintcache
-
+z
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/
@@ -72,7 +72,8 @@ web_modules/
 # dotenv environment variables file
 .env
 .env.test
-.env.production 
+.env.production
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
