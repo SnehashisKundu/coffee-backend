@@ -24,6 +24,10 @@ const registerUser = asynchandler(async (req, res) => {
 
     const avatarpath = req.files?.avatar?.[0]?.path;
     const cipath = req.files?.coverImage?.[0]?.path;
+    // let cipath;
+    // if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage<0){
+    //     cipath=req.files.coverImage[0].path;
+    // } //returning blank array
 
     if (!avatarpath) {
         throw new ApiError(400, "Avatar file is required");
