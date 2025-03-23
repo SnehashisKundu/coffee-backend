@@ -15,4 +15,4 @@ connectDB()
     console.log("MONGO db connection failed !!! ", err);
 })
 console.log("Connecting to:", process.env.MONGODB_URI);
-//console.log("MONGODB_PASSWORD:", process.env.MONGODB_PASSWORD);
+

@@ -46,18 +46,24 @@ const userschema=new Schema({
     timestamps:true
 })
 
-userschema.pre("save",async function (next) {
-    if(this.isModified("password")) return next();
-    else{
-    this.password=bcrypt.hash(this.password,10)
-    next()
-    }
-})
+userschema.pre("save", async function (next) {
+    if (!this.isModified("password")) return next(); 
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
+});
 
-userschema.methods.isPasswordCorrect=async function(password) {
-    return await bcrypt.compare(password,this.password)
-}
-userschema.methods.generateAccessToken=function(password) {//token generating
+
+
+userschema.methods.isPasswordCorrect = async function (enteredPassword) {
+    const isMatch = await bcrypt.compare(enteredPassword, this.password);
+    return isMatch;
+
+    // console.log("Entered Password:", enteredPassword);
+    // console.log("Stored Hashed Password:", this.password);
+    //console.log("Comparison Result:", isMatch);
+};
+
+userschema.methods.generateAccessToken=function() {//token generating
    return jwt.sign(
         {
             _id:this._id,
@@ -71,7 +77,7 @@ userschema.methods.generateAccessToken=function(password) {//token generating
         }
     )
 }
-userschema.methods.generateRefreshToken=async function(password) {
+userschema.methods.generateRefreshToken=async function() {
     return jwt.sign(
         {
             _id:this._id,
