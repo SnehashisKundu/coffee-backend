@@ -4,6 +4,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { User } from "../models/user.models.js";
 import { uploadoncloudinary } from "../utils/cloudinary.js";
 import jwt from "jsonwebtoken"
+import { subscribe } from "diagnostics_channel";
 
 
 const generateAccessTokenAndRefreshtoken= async (userId)=>{
@@ -198,12 +199,15 @@ const changePassword=asynchandler(async(req,res)=>{
     await user.save({
         validateBeforeSave:false
     })
+    return res
+    .status(200)
+    .json(new ApiResponse(200,{},"Passowrd Changed Successfully."))
 })
 
 const getUserProfile=asynchandler(async(req,res)=>{
     return res
     .status(200)
-    .json(200,req.user,"User Profile Fetched Successfully.")
+    .json(new ApiResponse(200,req.user,"User Profile Fetched Successfully."))
 })
 
 const updateAccountDetails=asynchandler(async(req,res)=>{
@@ -220,7 +224,7 @@ const updateAccountDetails=asynchandler(async(req,res)=>{
             }
         },
         {new:true}
-    ).select("-password -refreshtoken")
+    ).select("-password")
 
     return res
     .status(200)
@@ -274,6 +278,66 @@ const updateCoverImage=asynchandler(async(req,res)=>{
     .status(200)
     .json(new ApiResponse(200,user,"User Coverimage Updated Successfully"))
 })
+
+const getuserChannelProfile=asynchandler(async(req,res)=>
+{
+    const {username}=req.params
+
+    if(username?.trim()){
+        throw new ApiError(400,"username is missing.")
+    }
+    const channel=User.aggregate([
+        {
+            $match:{
+                username:username?.toLowerCase()
+            }
+        },
+        {
+            $lookup:{
+                from:"subsciptions" ,       //in model all the fields are in lowercase and be the plural form of the model name
+                localFieldL:"_id",
+                foreignField:"channel",
+                as:"subscribers"
+            }
+        },
+        {
+            $lookup:{
+                from:"subsciptions" ,
+                localFieldL:"_id",
+                foreignField:"subscriber",
+                as:"subscriberdto"
+            }
+        },
+        {
+            $addFields:{
+                subscribedCount:{
+                    $size:"$subscribers"
+                },
+                subscriptionCount:{
+                    $size:"$subscribedto"
+                },
+                issubscribed:{
+                    $cond:{
+                        if:{$in:[req.user._id,"$subscribers.subscriber"]},
+                        then:false,
+                        else:true
+                    }
+                }
+            }
+        },
+        {
+            $project:{
+                fullname:1,
+                username:1,
+                avatar:1,
+                coverImage:1,
+                email:1,
+                subscribedCount:1,
+                subscriptionCount:1
+            }
+        }
+    ])
+})
 export {
      registerUser,
      loginUser,
@@ -283,5 +347,6 @@ export {
      getUserProfile,
      updateAccountDetails,
      updateUserAvatar,
-     updateCoverImage
+     updateCoverImage,
+     getuserChannelProfile
     };
