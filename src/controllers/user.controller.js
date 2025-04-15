@@ -17,7 +17,7 @@ const generateAccessTokenAndRefreshtoken= async (userId)=>{
         await user.save({validateBeforeSave:false});
         return {accesstoken,refreshtoken};
     }catch(error){
-        throw new ApiError(500,"Somethong went wrong while generating refreshh and access token.")
+        throw new ApiError(500,"Something went wrong while generating refreshh and access token.")
     }
 }
 const registerUser = asynchandler(async (req, res) => {
