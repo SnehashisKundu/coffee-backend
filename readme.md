@@ -2,7 +2,7 @@
 
 A robust, JavaScript-powered RESTful API serving backend functionality for your coffee-related projects.
 
-![Coffee and Backend](https://chat.openai.com/mnt/data/A_high-resolution_digital_photograph_captures_a_Ma.png)
+![Coffee and Backend]([https://chat.openai.com/mnt/data/A_high-resolution_digital_photograph_captures_a_Ma.png](https://github.com/SnehashisKundu/coffee-backend/issues/3))
 
 
 ---
