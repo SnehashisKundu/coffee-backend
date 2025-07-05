@@ -1,8 +1,8 @@
 # ☕ Coffee Backend
 
 A robust, JavaScript-powered RESTful API serving backend functionality for your coffee-related projects.
+![Coffee Banner](https://github.com/user-attachments/assets/3d183e62-e9b7-449d-89c3-9f1deeb160f9" /)
 
-![Coffee and Backend]((https://github.com/user-attachments/assets/3d183e62-e9b7-449d-89c3-9f1deeb160f9" /))
 
 
 ---
