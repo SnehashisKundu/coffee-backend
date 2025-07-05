@@ -2,7 +2,7 @@
 
 A robust, JavaScript-powered RESTful API serving backend functionality for your coffee-related projects.
 
-![Coffee Banner](https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1350&q=80)
+![Coffee and Backend](https://chat.openai.com/mnt/data/A_high-resolution_digital_photograph_captures_a_Ma.png)
 
 
 ---
