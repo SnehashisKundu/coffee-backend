@@ -1,9 +1,8 @@
 # ☕ Coffee Backend
 
 A robust, JavaScript-powered RESTful API serving backend functionality for your coffee-related projects.
-![Coffee Banner](https://github.com/user-attachments/assets/3d183e62-e9b7-449d-89c3-9f1deeb160f9" /)
 
-
+![Coffee Banner](https://github.com/user-attachments/assets/3d183e62-e9b7-449d-89c3-9f1deeb160f9)
 
 ---
 
@@ -27,8 +26,8 @@ A robust, JavaScript-powered RESTful API serving backend functionality for your 
 | Database          | MongoDB with Mongoose (or alternative)          |
 | Logging           | Winston / Morgan                                |
 | Validation        | Joi or express-validator                        |
-| Testing           | Jest + Supertest                               |
-| Env Management    | dotenv                                          |
+| Testing           | Jest + Supertest                                |
+| Env Management    | dotenv                                           |
 
 ---
 
